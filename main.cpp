@@ -5,10 +5,14 @@ void inputData(float* p, int n){
     cout<<"Введите значения температуры:";
     for (int i= 0; i<n; i++){
         cin>> *(p+i);
+        if( *(p+i) < -50 || *(p+i) > 50) {
+            cout << "Введите значение от -50 до 50" << endl;
+            i -= 1;
+        }
     }
 }
 
-float average(const float* p, int n) {    
+float average(const float* p, int n){    
     float sum = 0;
     for (int i=0; i<n;i++){ 
         sum += *(p+i);
@@ -17,7 +21,7 @@ float average(const float* p, int n) {
 }
 
 float minValue(const float *p, int n){
-    float min = 100;
+    float min = 100000;
     for (int i = 0; i<n;i++){
         if (*(p+i) < min){
             min = *(p + i);
@@ -27,7 +31,7 @@ float minValue(const float *p, int n){
 }
 
 float maxValue(const float *p, int n){
-    float max = -100;
+    float max = -100000;
     for (int i = 0; i<n;i++){
         if (*(p+i) > max){
             max = *(p + i);
